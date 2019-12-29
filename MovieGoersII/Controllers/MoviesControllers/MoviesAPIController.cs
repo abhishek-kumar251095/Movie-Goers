@@ -28,7 +28,19 @@ namespace MovieGoersII.Controllers.MoviesControllers
             var movie = await _movieRepository.GetByIdAsync(id);
             if(movie == null)
             {
-                return BadRequest();
+                return null;
+            }
+            return Ok(movie);
+        }
+
+        [HttpGet]
+        [Route(("tmdb/{id}"))]
+        public async Task<ActionResult<IEnumerable<Movies>>> GetMovieByTmdbIdAsync(int id)
+        {
+            var movie = await _movieRepository.GetMovieByTmdbIdAsync(id);
+            if (movie == null)
+            {
+                return null;
             }
             return Ok(movie);
         }

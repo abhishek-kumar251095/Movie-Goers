@@ -42,7 +42,14 @@
     @{
         if (Model.SearchModel != null)
         {
-            @await Html.PartialAsync("SearchForMovies", Model.SearchModel);
+        <div>
+            @await Html.PartialAsync("SearchForMovies", Model.SearchModel)
+            <br />
+
+            <button type="submit" form="search_form" id="search_button_prev" onclick="pagePrev()">Previous</button>
+            <button type="submit" form="search_form" id="search_button_next" onclick="pageNext()">Next</button>
+
+        </div>
         }
         else
         {
@@ -51,8 +58,7 @@
             </div>
         }
     }
-    <button type="submit" form="search_form" id="search_button_next" onclick="pageNext()">Next</button>
-    <button type="submit" form="search_form" id="search_button_prev" onclick="pagePrev()">Previous</button>
+    
 
 </body>
 </html>

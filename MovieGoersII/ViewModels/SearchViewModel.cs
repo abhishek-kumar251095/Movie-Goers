@@ -9,5 +9,6 @@ namespace MovieGoersII.ViewModels
     {
         public int MovieId { get; set; }
         public string MovieName { get; set; }
+        public ButtonTaskViewModel ButtonTask { get; set; }
     }
 }

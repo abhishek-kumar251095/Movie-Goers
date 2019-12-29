@@ -25,5 +25,13 @@ namespace MovieGoersIIDAL.Services.Repositories
             return movies;
 
         }
+
+        public async Task<Movies> GetMovieByTmdbIdAsync(int id)
+        {
+            var movies = await _context.Movies.Where(o => o.TMDBId == id).FirstOrDefaultAsync();
+
+            return movies;
+
+        }
     }
 }

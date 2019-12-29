@@ -28,9 +28,7 @@
                     @Html.DisplayFor(modelItem => item.MovieName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })+-
+                    @Html.ActionLink(item.ButtonTask.Text, item.ButtonTask.Action, new {  id=item.MovieId, page = ViewBag.page, searchQuery = ViewBag.searchQuery  })
                 </td>
             </tr>
         }

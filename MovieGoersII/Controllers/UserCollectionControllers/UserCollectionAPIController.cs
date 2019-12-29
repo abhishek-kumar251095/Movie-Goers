@@ -60,6 +60,7 @@ namespace MovieGoersII.Controllers.UserCollectionControllers
         [HttpGet]
         [Route("User/{userId}")]
         public async Task<ActionResult<IEnumerable<UserCollection>>> GetCollectionByUserIdAsync(int userId)
+        
         {
             var collection = await _collectionRepository.GetCollectionByUserIdAsync(userId);
             if(collection == null)
