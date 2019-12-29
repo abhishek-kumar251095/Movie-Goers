@@ -1,0 +1,7 @@
+.env
+MovieGoersII/bin/
+MovieGoersII/obj/
+MovieGoersIIDAL/bin/
+MovieGoersIIDAL/obj/
+WebApplication1/
+.vs/

@@ -1,0 +1,7 @@
+D:\.NET\MovieGoersII\MovieGoersIIBL\bin\Debug\netcoreapp3.1\MovieGoersIIBL.deps.json
+D:\.NET\MovieGoersII\MovieGoersIIBL\bin\Debug\netcoreapp3.1\MovieGoersIIBL.dll
+D:\.NET\MovieGoersII\MovieGoersIIBL\bin\Debug\netcoreapp3.1\MovieGoersIIBL.pdb
+D:\.NET\MovieGoersII\MovieGoersIIBL\obj\Debug\netcoreapp3.1\MovieGoersIIBL.AssemblyInfoInputs.cache
+D:\.NET\MovieGoersII\MovieGoersIIBL\obj\Debug\netcoreapp3.1\MovieGoersIIBL.AssemblyInfo.cs
+D:\.NET\MovieGoersII\MovieGoersIIBL\obj\Debug\netcoreapp3.1\MovieGoersIIBL.dll
+D:\.NET\MovieGoersII\MovieGoersIIBL\obj\Debug\netcoreapp3.1\MovieGoersIIBL.pdb
