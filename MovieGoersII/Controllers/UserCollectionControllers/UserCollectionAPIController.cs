@@ -9,6 +9,11 @@ using MovieGoersIIDAL.Services.Repositories;
 
 namespace MovieGoersII.Controllers.UserCollectionControllers
 {
+    /*
+     * This class contains the API methods
+     * that communicate the 'UserCollection' table in the DB.
+     */
+
     [Route("api/[controller]")]
     [ApiController]
     public class UserCollectionAPIController : ControllerBase
@@ -20,6 +25,7 @@ namespace MovieGoersII.Controllers.UserCollectionControllers
             _collectionRepository = collectionRepository;
         }
 
+        //Returns users' collection using collection's id.
         [HttpGet("{id}")]
         public async Task<ActionResult<UserCollection>> GetCollectionByIdAsync(int id)
         {
@@ -31,6 +37,7 @@ namespace MovieGoersII.Controllers.UserCollectionControllers
             return Ok(collection);
         }
 
+        //Adds a new collection.
         [HttpPost]
         public async Task<ActionResult<UserCollection>> CreateCollectionAsync(UserCollection collection)
         {
@@ -44,6 +51,7 @@ namespace MovieGoersII.Controllers.UserCollectionControllers
             return Ok(collection);
         }
 
+        //Sets the 'IsSoftDeleted' field to 'true' for a movie.
         [HttpPut]
         public async Task<ActionResult<UserCollection>> SoftDeleteCollectionAsync(UserCollection collection)
         {
@@ -57,6 +65,7 @@ namespace MovieGoersII.Controllers.UserCollectionControllers
 
         }
 
+        //Gets all the collection for a user.
         [HttpGet]
         [Route("User/{userId}")]
         public async Task<ActionResult<IEnumerable<UserCollection>>> GetCollectionByUserIdAsync(int userId)

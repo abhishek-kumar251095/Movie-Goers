@@ -11,6 +11,11 @@ using MovieGoersII.Handlers;
 
 namespace MovieGoersII.Controllers.MoviesControllers
 {
+    /*
+     * This class contains the API methods
+     * that communicate the Movies table in the DB.
+     */
+
     [Route("api/[controller]")]
     [ApiController]
     public class MoviesAPIController : ControllerBase
@@ -22,6 +27,7 @@ namespace MovieGoersII.Controllers.MoviesControllers
             _movieRepository = movieRepository;
         }
 
+        //Returns the movie details given the movie-id in the DB.
         [HttpGet("{id}")]
         public async Task<ActionResult<IEnumerable<Movies>>> GetMovieByIdAsync(int id)
         { 
@@ -33,6 +39,7 @@ namespace MovieGoersII.Controllers.MoviesControllers
             return Ok(movie);
         }
 
+        //Returns the movie details using the TMDB-Id.
         [HttpGet]
         [Route(("tmdb/{id}"))]
         public async Task<ActionResult<IEnumerable<Movies>>> GetMovieByTmdbIdAsync(int id)
@@ -45,6 +52,7 @@ namespace MovieGoersII.Controllers.MoviesControllers
             return Ok(movie);
         }
 
+        //Adds movie to the DB.
         [HttpPost]
         public async Task<ActionResult<Movies>> AddMovieAsync(Movies movie)
         {
@@ -56,6 +64,7 @@ namespace MovieGoersII.Controllers.MoviesControllers
             return Ok(movie);
         }
 
+        //Deletes movie from the DB.
         [HttpDelete("{id}")]
         public async Task<ActionResult<Movies>> DeleteMovieAsync(int id)
         {
@@ -67,6 +76,7 @@ namespace MovieGoersII.Controllers.MoviesControllers
             return Ok(movie);
         }
 
+        //Gets the list of movies that are rated/unrated by admin depending upon the parameter.
         [HttpGet]
         [Route("Movies/{isAdminRated}")]
         public async Task<ActionResult<IEnumerable<Movies>>> GetMovieByIsRatedAsync(int isAdminRated)
@@ -74,7 +84,7 @@ namespace MovieGoersII.Controllers.MoviesControllers
             var movies = await _movieRepository.GetMovieByStatusAsync(isAdminRated == 1 ? true: false );
             if(movies == null)
             {
-                return BadRequest();
+                return null;
             }
             return Ok(movies); 
         }
