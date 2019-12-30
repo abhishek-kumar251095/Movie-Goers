@@ -53,7 +53,7 @@ namespace MovieGoersII.Handlers
             }
         }
 
-        public async Task<IEnumerable<SearchViewModel>> MovieSearchListAsync(string query, string page)
+        public async Task<Tuple<List<SearchViewModel>, int>> MovieSearchListAsync(string query, string page)
         {
             var apiKey = DotNetEnv.Env.GetString("TMDB_Key");
             var request = new HttpRequestMessage(HttpMethod.Get,
@@ -67,6 +67,8 @@ namespace MovieGoersII.Handlers
                     var responseString = await response.Content.ReadAsStringAsync();
 
                     dynamic resp = JToken.Parse(responseString);
+
+                    int totalPages = resp.total_pages;
 
                     List<SearchViewModel> searchResults = new List<SearchViewModel>();
 
@@ -89,8 +91,8 @@ namespace MovieGoersII.Handlers
 
                         searchResults.Add(searchResult);
                     }
-
-                    return searchResults;
+                    
+                    return Tuple.Create(searchResults,totalPages);
                 }
                 else
                 {

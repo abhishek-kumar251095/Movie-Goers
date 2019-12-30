@@ -9,7 +9,7 @@ namespace MovieGoersII.Handlers
 {
     public interface ITmdbHandler
     {
-        public Task<IEnumerable<SearchViewModel>> MovieSearchListAsync(string query, string page);
+        public Task<Tuple<List<SearchViewModel>, int>> MovieSearchListAsync(string query, string page);
         public Task<Movies> MovieDetailsAsync(int tmdbID);
     }
 }

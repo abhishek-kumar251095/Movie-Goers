@@ -1,4 +1,10 @@
-﻿@model IEnumerable<MovieGoersII.ViewModels.SearchViewModel>
+﻿<!--
+    This is the partial view responsible for
+    displaying the search results returned by the
+    TMDB API. 
+-->
+
+@model IEnumerable<MovieGoersII.ViewModels.SearchViewModel>
 @{
     Layout = null;
 }
@@ -28,9 +34,18 @@
                     @Html.DisplayFor(modelItem => item.MovieName)
                 </td>
                 <td>
-                    @Html.ActionLink(item.ButtonTask.Text, item.ButtonTask.Action, new {  id=item.MovieId, page = ViewBag.page, searchQuery = ViewBag.searchQuery  })
+                    @Html.ActionLink(item.ButtonTask.Text, item.ButtonTask.Action, new { id = item.MovieId, page = ViewBag.page, searchQuery = ViewBag.searchQuery })
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<br />
+
+<!-- Buttons to navigate to next and previous search pages-->
+@if ((Convert.ToInt32(ViewBag.page) - 1) > 0)
+    @Html.ActionLink("Previous", "SearchForMovies", new { page = Convert.ToInt32(ViewBag.page) - 1, searchQuery = ViewBag.searchQuery })
+
+@if ((Convert.ToInt32(ViewBag.page) + 1) <= ViewBag.totalPages)
+    @Html.ActionLink(" Next", "SearchForMovies", new{ page = Convert.ToInt32(ViewBag.page) + 1, searchQuery = ViewBag.searchQuery })

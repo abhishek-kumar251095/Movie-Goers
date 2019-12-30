@@ -48,10 +48,14 @@ namespace MovieGoersII.Controllers
         {
             ViewBag.page = page;
             ViewBag.searchQuery = searchQuery;
-            int userId = DotNetEnv.Env.GetInt("User_Id");
-            var result = await _handler.MovieSearchListAsync(searchQuery, page);
 
-            foreach(var item in result)
+            int userId = DotNetEnv.Env.GetInt("User_Id");
+
+            var searchResult = await _handler.MovieSearchListAsync(searchQuery, page);
+
+            ViewBag.totalPages = searchResult.Item2; //Item2 is the total number of pages the search result returns
+
+            foreach (var item in searchResult.Item1) //Item1 is the list of movies returned by the TMDB handler method.
             {
                 //Check if a movie is already in the collection. If yes, the button for removing the collection goes with the details.
                 if(await _collectionHandler.CheckCollectionForMovieAsync(item.MovieId,userId))
@@ -65,7 +69,7 @@ namespace MovieGoersII.Controllers
 
             SearchCriteriaViewModel searchCriteriaViewModel = new SearchCriteriaViewModel
             {
-                SearchModel = result.ToList()
+                SearchModel = searchResult.Item1.ToList()
             };
             
             return View("SearchMovies", searchCriteriaViewModel);

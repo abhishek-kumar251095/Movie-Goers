@@ -1,4 +1,10 @@
-﻿@model MovieGoersII.ViewModels.SearchCriteriaViewModel
+﻿<!--
+    This is the home page. It displays
+    the users' collection, as well as 
+    the search results for a movie.
+-->
+
+@model MovieGoersII.ViewModels.SearchCriteriaViewModel
 @{
     Layout = null;
 }
@@ -6,59 +12,34 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>View</title>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>View</title>
         
-    <script>
-
-        function filter() {
-            document.getElementById("page").value = 1;
-            return true;
-        }
-
-        function pageNext() {
-            let page = document.getElementById("page");
-            let value_page = parseInt(page.value) + 1;
-            page.value = value_page.toString(); 
-            return true;
-        }
-
-        function pagePrev() {
-            let page = document.getElementById("page");
-            let value_page = parseInt(page.value) - 1;
-            page.value = value_page.toString(); 
-            return true;
-        }
-    </script>
-</head>
-<body>
-    <form method="get" asp-controller="Search" asp-action="SearchForMovies" id="search_form">
-        <input type="hidden" asp-for="Page" id="page" />
-        <input type="hidden" id="queryval" />
-        <input type="text" asp-for="SearchQuery" id="search_query" />
-        <button type="submit" id="search_button" onclick="filter()">Search</button>
-    </form>
-    @{
-        if (Model.SearchModel != null)
-        {
-        <div>
-            @await Html.PartialAsync("SearchForMovies", Model.SearchModel)
-            <br />
-
-            <button type="submit" form="search_form" id="search_button_prev" onclick="pagePrev()">Previous</button>
-            <button type="submit" form="search_form" id="search_button_next" onclick="pageNext()">Next</button>
-
-        </div>
-        }
-        else
-        {
+    </head>
+    <body>
+        <form method="get" asp-controller="Search" asp-action="SearchForMovies" id="search_form">
+            <input type="hidden" asp-for="Page" id="page" value="1" />
+            <input type="text" asp-for="SearchQuery" id="search_query" />
+            <button type="submit" id="search_button" onclick="filter()">Search</button>
+        </form>
+        @{
+            if (Model.SearchModel != null)
+            {
+                <!-- Display the search results as partial view -->
             <div>
-                @await Component.InvokeAsync("UserMovieCollection")
+                @await Html.PartialAsync("SearchForMovies", Model.SearchModel)
             </div>
+            }
+            else
+            {
+                <!-- Display the users' collection as a View-Component -->
+                <div>
+                    @await Component.InvokeAsync("UserMovieCollection")
+                </div>
+            }
         }
-    }
     
 
-</body>
+    </body>
 </html>
