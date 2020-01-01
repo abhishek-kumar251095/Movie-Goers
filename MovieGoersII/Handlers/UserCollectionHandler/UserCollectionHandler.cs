@@ -79,5 +79,11 @@ namespace MovieGoersII.Handlers.UserCollectionHandler
             var res = await _collectionRepository.CheckMovieInCollectionAsync(tmdbId, userId);
             return res;
         }
+
+        public async Task<IEnumerable<UserCollection>> GetMovieReviewsFromId(int movieId)
+        {
+            var res = await _collectionRepository.GetReviewsFromMovieId(movieId);
+            return res;
+        }
     }
 }

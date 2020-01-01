@@ -31,7 +31,7 @@
                     @Html.DisplayFor(modelItem => item.MovieId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.MovieName)
+                    @Html.ActionLink(item.MovieName, "DisplayMovies", "MoviesDetails", new { id = item.MovieId})
                 </td>
                 <td>
                     @Html.ActionLink(item.ButtonTask.Text, item.ButtonTask.Action, new { id = item.MovieId, page = ViewBag.page, searchQuery = ViewBag.searchQuery })
