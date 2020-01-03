@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MovieGoersIIBL
 {
-    public class Users:ITempInterface
+    public class Users
     {
         [Key]
         public int Id { get; set; }

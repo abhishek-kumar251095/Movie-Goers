@@ -17,9 +17,9 @@ namespace MovieGoersIIBL
         public string IMDBId { get; set; }
         public string Overview { get; set; }
         public string Language { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
         public string Status { get; set; }
-        public int Runtime { get; set; }
+        public int? Runtime { get; set; }
         public bool IsAdminRated { get; set; }
 
         public virtual ICollection<UserCollection> UserCollection { get; set; }

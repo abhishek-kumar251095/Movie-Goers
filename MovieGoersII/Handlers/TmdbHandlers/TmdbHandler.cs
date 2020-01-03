@@ -38,7 +38,7 @@ namespace MovieGoersII.Handlers
                         IMDBId = resp.imdb_id,
                         Overview = resp.overview,
                         Language = resp.original_language,
-                        ReleaseDate = resp.release_date,
+                        ReleaseDate = resp.release_date == "" ? null : resp.release_date,
                         Status = resp.status,
                         Runtime = resp.runtime,
                         IsAdminRated = false
