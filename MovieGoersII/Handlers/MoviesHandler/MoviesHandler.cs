@@ -68,5 +68,39 @@ namespace MovieGoersII.Handlers.MoviesHandler
 
             return null;
         }
+
+        public async Task<IEnumerable<Movies>> GetMoviesByStatusAsync(int status)
+        {
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, "api/moviesapi/movies/" + status);
+            var client = _client.CreateClient("moviegoersWebApi");
+            using (var request = await client.SendAsync(requestMessage))
+            {
+                if(request.IsSuccessStatusCode)
+                {
+                    var response = await request.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<IEnumerable<Movies>>(response);
+                    return result;
+                }
+            }
+
+            return null;
+        }
+
+        public async Task<Movies> EditMovieStatusAsync(Movies movie)
+        {
+            var uri = new Uri("https://localhost:44357/api/moviesapi/");
+            var client = new HttpClient();
+            using (var request = await client.PutAsync(uri, new StringContent(JsonConvert.SerializeObject(movie), Encoding.UTF8, "application/json")))
+            {
+                if (request.IsSuccessStatusCode)
+                {
+                    var response = await request.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<Movies>(response);
+                    return result;
+                }
+            }
+
+            return null;
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace MovieGoersIIBL
         public bool IsAdminRated { get; set; }
 
         public virtual ICollection<UserCollection> UserCollection { get; set; }
-
+        public virtual ICollection<Recommendations> Recommendations{ get; set; }
     }
         
 }

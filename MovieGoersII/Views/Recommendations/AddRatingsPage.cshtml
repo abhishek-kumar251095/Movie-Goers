@@ -1,0 +1,28 @@
+﻿@model MovieGoersII.ViewModels.RecommendationsViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddRatingsPage</title>
+</head>
+    <body>
+
+        <form asp-controller="Recommendations" asp-action="AddRecommendationRatings" method="post">
+            <select asp-for="MovieId" asp-items="Model.MoviesList"></select>
+            <input asp-for="InformationRequired" />
+            <input asp-for="Suspense" />
+            <input asp-for="Violence" />
+            <input asp-for="SpecialEffects" />
+            <input asp-for="Intensity" />
+            <input asp-for="Pace" />
+            <input asp-for="CharacterCentered" />
+            <br /><button type="submit">Register</button>
+        </form>
+
+    </body>
+</html>

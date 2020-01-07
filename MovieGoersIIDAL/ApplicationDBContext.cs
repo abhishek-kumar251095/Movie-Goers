@@ -17,6 +17,7 @@ namespace MovieGoersIIDAL
         public DbSet<Users> Users { get; set; }
         public DbSet<UserCollection> UserCollection { get; set; }
         public DbSet<Movies> Movies { get; set; }
+        public DbSet<Recommendations> Recommendations { get; set; }
 
         public class ApplicationDesignTimeContext : IDesignTimeDbContextFactory<ApplicationDBContext>
         {

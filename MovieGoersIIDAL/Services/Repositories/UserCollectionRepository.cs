@@ -65,5 +65,18 @@ namespace MovieGoersIIDAL.Services.Repositories
 
             return collection;
         }
+
+        public async Task<IEnumerable<UserCollection>> GetReviewsFromMovieId(int movieId)
+        {
+            var res = from t1 in _context.UserCollection
+                      join t2 in _context.Users
+                      on t1.UserId equals t2.Id
+                      where (t1.MovieId == movieId) && (!t1.IsSoftDeleted)
+                      select new UserCollection { Rating = t1.Rating, Review = t1.Review, User = t2, MovieId = t1.MovieId };
+
+            var collection = await res.ToListAsync();
+
+            return collection;
+        }
     }
 }

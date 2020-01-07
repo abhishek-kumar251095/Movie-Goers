@@ -78,7 +78,7 @@ namespace MovieGoersII.Controllers.MoviesControllers
 
         //Gets the list of movies that are rated/unrated by admin depending upon the parameter.
         [HttpGet]
-        [Route("Movies/{isAdminRated}")]
+        [Route("movies/{isAdminRated}")]
         public async Task<ActionResult<IEnumerable<Movies>>> GetMovieByIsRatedAsync(int isAdminRated)
         {
             var movies = await _movieRepository.GetMovieByStatusAsync(isAdminRated == 1 ? true: false );
@@ -87,6 +87,19 @@ namespace MovieGoersII.Controllers.MoviesControllers
                 return null;
             }
             return Ok(movies); 
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Movies>> EditMovieStatusAsync(Movies movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _movieRepository.PutAsync(movie);
+            return Ok(movie);
+
         }
     }
 }

@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MovieGoersII.Handlers;
 using MovieGoersII.Handlers.MoviesHandler;
+using MovieGoersII.Handlers.RecommendationHandler;
 using MovieGoersII.Handlers.UserCollectionHandler;
 using MovieGoersIIDAL;
 using MovieGoersIIDAL.Services;
@@ -41,6 +42,7 @@ namespace MovieGoersII
             services.AddScoped<UserRepository>();
             services.AddScoped<UserCollectionRepository>();
             services.AddScoped<MoviesRepository>();
+            services.AddScoped<RecommendationsRepository>();
 
             services.AddHttpClient("moviegoersWebApi", options =>
             {
@@ -55,6 +57,7 @@ namespace MovieGoersII
             services.AddScoped<ITmdbHandler, TmdbHandler>();
             services.AddScoped<IUserCollectionHandler, UserCollectionHandler>();
             services.AddScoped<IMoviesHandler, MoviesHandler>();
+            services.AddScoped<IRecommendationsHandler, RecommendationsHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
