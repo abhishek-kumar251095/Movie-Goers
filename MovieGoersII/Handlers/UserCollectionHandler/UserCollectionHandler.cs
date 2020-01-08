@@ -80,10 +80,14 @@ namespace MovieGoersII.Handlers.UserCollectionHandler
             return res;
         }
 
-        public async Task<IEnumerable<UserCollection>> GetMovieReviewsFromId(int movieId)
+        public async IAsyncEnumerable<UserCollection> GetMovieReviewsFromId(int movieId)
         {
             var res = await _collectionRepository.GetReviewsFromMovieId(movieId);
-            return res;
+            foreach(var item in res)
+            {
+                yield return item;
+            }
+
         }
     }
 }

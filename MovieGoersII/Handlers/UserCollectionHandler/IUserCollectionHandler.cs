@@ -12,7 +12,7 @@ namespace MovieGoersII.Handlers.UserCollectionHandler
         public Task<UserCollection> AddCollectionAsync(UserCollection userCollection);
         public Task<bool> CheckCollectionForMovieAsync(int tmdbId, int userId);
         public Task<UserCollection> RemoveCollectionAsync(int tmdbId, int userId);
-        public Task<IEnumerable<UserCollection>> GetMovieReviewsFromId(int movieId);
+        public IAsyncEnumerable<UserCollection> GetMovieReviewsFromId(int movieId);
        
     }
 }

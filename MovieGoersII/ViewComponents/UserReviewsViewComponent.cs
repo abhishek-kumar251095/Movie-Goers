@@ -25,12 +25,12 @@ namespace MovieGoersII.ViewComponents
 
         public async Task<IEnumerable<ReviewsViewModel>> GetReviewsAsync(int movieId)
         {
-            var res = await _collectionhandler.GetMovieReviewsFromId(movieId);
+            var res = _collectionhandler.GetMovieReviewsFromId(movieId);
             List<ReviewsViewModel> reviewsModels = new List<ReviewsViewModel>();
             ReviewsViewModel review;
 
 
-            foreach (var item in res)
+            await foreach (var item in res)
             {
                 review = new ReviewsViewModel
                 {

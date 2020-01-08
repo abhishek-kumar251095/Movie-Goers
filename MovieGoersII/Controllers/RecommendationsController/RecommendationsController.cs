@@ -118,12 +118,15 @@ namespace MovieGoersII.Controllers.RecommendationsController
                 Violence = recommendations.Violence
             };
 
-            await _recommendationsHandler.PostRecommendationsAsync(recommendationRatings);
+            var result = await _recommendationsHandler.PostRecommendationsAsync(recommendationRatings);
 
-            var movie = await _moviesHandler.GetMovieByIdAsync(recommendationRatings.MovieId);
-            movie.IsAdminRated = true;
+            if(result != null)
+            {
+                var movie = await _moviesHandler.GetMovieByIdAsync(recommendationRatings.MovieId);
+                movie.IsAdminRated = true;
 
-            var res = await _moviesHandler.EditMovieStatusAsync(movie);
+                var res = await _moviesHandler.EditMovieStatusAsync(movie);
+            }
 
             return RedirectToAction("AddRatingsPage");
 
